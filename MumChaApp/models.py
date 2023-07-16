@@ -23,10 +23,10 @@ class User(models.Model):
         return len(Follow.objects.filter(follow_target=self.id))
 
 #投稿テーブル
-class Posting(models.Model):
+class Post(models.Model):
     contents_id = models.IntegerField(primary_key=True)
     content = models.TextField(max_length=200)
-    posting_date = models.DateTimeField()
+    post_date = models.DateTimeField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
 #フォローテーブル
@@ -39,4 +39,4 @@ class Follow(models.Model):
 class Favorite(models.Model):
     fav_id = models.IntegerField(primary_key=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    contents = models.ForeignKey(Posting, on_delete=models.CASCADE)
+    contents = models.ForeignKey(Post, on_delete=models.CASCADE)
